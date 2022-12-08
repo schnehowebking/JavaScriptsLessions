@@ -671,6 +671,160 @@ function programHandler(e){
     }
     
 }
+
+const country = document.querySelector('#country');
+country.addEventListener('change', selectionHandler);
+
+function selectionHandler(e){
+    console.log(e.target.value)
+
+}
+
+//////////////////// onsubmit/ submit event
+
+
+////// finding element
+const form = document.querySelector('form');
+const name= form.querySelector('div #name');
+const email = form.querySelector('div #email');
+const password = form.querySelector('div #password');
+
+////// event listener adding
+
+form.addEventListener('submit', formHandler);
+
+function formHandler(e){
+    e.preventDefault();
+    // console.log(name.value);
+
+    // /// create object to store value......
+
+    const userInfo = {
+        name : name.value,
+        email : email.value,
+        password : password.value,
+    };
+    console.log(userInfo);
+    // ///// after submit make value empty
+    name.value = "";
+    email.value = "";
+    password.value = "";
+}
+
+//////////////////// media event
+/////////////// audio/video events
+///////////////  canplay, play, playing, pause, progress, ended, volumechange, waiting.......
+
+
+const video = document.querySelector('video');
+
+video.addEventListener('canplay', function(){
+    console.log('canplay');
+
+});
+video.addEventListener('play', function(){
+    console.log('play');
+
+});
+video.addEventListener('pause', function(){
+    console.log('pause');
+
+});
+video.addEventListener('playing', function(){
+    console.log('playing');
+
+});
+video.addEventListener('ended', function(){
+    console.log('ended');
+
+});
+video.addEventListener('volumechange', function(){
+    console.log('volumechange');
+
+});
+
+///////////////// load, unload, scroll, resize, toggle........................
+
+window.addEventListener('load', function(){
+    console.log('Loaded');
+});
+window.addEventListener('unload', function(){
+    console.log('Unloaded');
+});
+window.addEventListener('scroll', function(){
+    console.log('scroll');
+});
+window.addEventListener('resize', function(){
+
+    const width = window.outerWidth;
+    const height = window.outerHeight;
+    console.log(`height: ${height}, width: ${width}`);
+});
+
+// /////////// for toggles..............
+
+const details = document.querySelector('details');
+
+details.addEventListener('toggle', function(e){
+    const open = e.target.open;
+    const close = e.target.close;
+    if(open){
+        console.log('open');
+    }else{
+        console.log('close');
+    }
+})
+
+
+
+///////////////// MouseEvent -(MouseEvent work except - <html>, <head>, <meta>, <title>, <br>, <style>, <script>, <iframe>, <param>, <base>, <bdo>).............
+
+// 1. onclick(HTML)/click(JS)
+// 2. ondblclick(HTML)/dblclick(JS)
+// 3. onmousedown(HTML)/mousedown(JS)
+// 4. onmouseup(HTML)/mouseup(JS)
+// 5 onmouseenter(HTML)/mouseenter(JS)
+// 6. onmouseleave(HTML)/mouseleave(JS)
+// 7. onmousemove(HTML)/mousemove(JS)
+// 8. onmouseover(HTML)/mouseover(JS)
+
+const mouseEvents = document.querySelector('div#mouseEvents');
+console.log(mouseEvents);
+
+mouseEvents.addEventListener('click', function(){
+    console.log("clicked");
+});
+mouseEvents.addEventListener('dblclick', function(){
+    console.log("Double clicked");
+});
+mouseEvents.addEventListener('mousedown', function(){
+    console.log("mousedown");
+});
+mouseEvents.addEventListener('mouseup', function(){
+    console.log("mouseup");
+});
+mouseEvents.addEventListener('mouseenter', function(){
+    console.log('Mouse enter');
+});
+mouseEvents.addEventListener('mouseleave', function(){
+    console.log('mouse leave');
+   
+});
+mouseEvents.addEventListener('mousemove', function(){
+    console.log("Mouse move")
+});
+mouseEvents.addEventListener('mouseover', function(){
+    console.log('Mouse Over')
+   
+});
+
+
+
+
+
+
+
+
 console.clear();
 
 
