@@ -3,3 +3,11 @@
     font-size: 25px;
 
 }
+div{
+    margin-bottom: 5px;
+}
+#mouseEvents{
+    background-color: tomato;
+    height: 500px;
+    width: 200px;
+}
