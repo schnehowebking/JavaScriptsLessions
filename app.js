@@ -818,6 +818,320 @@ mouseEvents.addEventListener('mouseover', function(){
    
 });
 
+///////// more on mousemove..........
+mouseEvents.addEventListener('mousemove', function(e){
+    console.log("ClientX = " + e.clientX + " ClientY = " + e.clientY);// depends on full windows
+    console.log("offsetX = " + e.offsetX + " offsetY = " + e.offsetY);// depends on the seleceted elements
+});
+
+
+////////// more on click
+
+mouseEvents.addEventListener('click', function(e){
+    console.log(e.target);
+    console.log(e.target.id);
+    console.log(e.target.innerHTML);
+    console.log(e.target.textContent);
+    console.log(e.target.innerText);
+});
+
+
+
+
+
+//////// more about click.........
+
+const buttomn = document.querySelectorAll('.btn');
+
+const array = Array.from(buttomn);
+array.map((butotn) =>{
+    butotn.addEventListener('click', function(e){
+        console.log(e.target.innerText);
+
+    });
+});
+
+
+
+
+
+
+
+
+
+/////////////////////////// KeyboardEvent...............
+
+// 1. Keydown
+// 2. Keypress (Some browser not support it)
+// 1. Keyup
+// properties- key, keyCode, code, shiftKey, ctlKey, repeat.....
+
+const textarea = document.querySelector('textarea');
+textarea,addEventListener('keydown', function(){
+    console.log('keydown');
+
+});
+textarea,addEventListener('keypress', function(){
+    console.log('keypress');
+
+});
+textarea,addEventListener('keyup', function(){
+    console.log('keyup');
+
+});
+
+
+
+
+//////////////////////////// FocusEvent...............
+
+// focus event work except -  <br>, <head>, <title>, <html>, <iframe>, <meta>, <param>, <script>, <style>, <base>, <bdo>
+
+// 1. onblur(html)/blur(Js)
+// 2. onfocus(html)/focus(Js)
+// 3. onfocusin(html)/focusin(Js)
+// 3. onfocusout(html)/focusout(Js)
+
+
+const input = document.querySelector('input');
+input.addEventListener('blur', function(e){
+    console.log("Blur is occured");
+    input.style.backgroundColor = "";
+    input.style.padding = "";
+    input.value = e.target.value.toUpperCase();
+
+});
+input.addEventListener('focus', function(){
+    console.log("focus is occured");
+    input.style.backgroundColor = "red";
+    input.style.padding = "2rem";
+   
+
+});
+input.addEventListener('focusin', function(){
+    console.log("focusin is occured")
+
+});
+input.addEventListener('focusout', function(){
+    console.log("focusout is occured")
+
+});
+
+
+
+/////////////// ClipboardEvent.......................
+
+// 1. oncopy(HTML)/copy(JS)
+// 2. oncut(HTML)/cut(JS)
+// 3. onpaste(HTML)/paste(JS)
+
+const input = document.querySelector('input');
+const p = document.querySelector('p');
+
+input.addEventListener('copy', function(){
+    p.innerHTML = "copied";
+
+});
+input.addEventListener('cut', function(){
+
+    p.innerHTML = "cutted";
+
+});
+input.addEventListener('paste', function(){
+
+    p.innerHTML = "pasted";
+
+});
+
+
+
+
+/////////////////////////// DragEvent...............
+
+// ondragstart(HTML)/dragstart(JS)
+// ondrag(HTML)/drag(JS)
+// ondragend(HTML)/dragend(JS)
+// ondragenter(HTML)/dragenter(JS)
+// ondragleave(HTML)/dragleave(JS)
+// ondragover(HTML)/dragover(JS)
+// ondrop(HTML)/drop(JS)
+
+
+const div = document.querySelector('div');
+const p = document.querySelector('p');
+
+p.addEventListener('dragstart', function(e){
+    e.dataTransfer.setData("Text", e.target.id);
+});
+
+div.addEventListener("dragover", function(e){
+    e.preventDefault();
+});
+
+div.addEventListener("drop", function(e){
+    let id = e.dataTransfer.getData("Text");
+    e.preventDefault(id);
+    let child = document.getElementById(id);
+    div.appendChild(child);
+});
+
+
+
+
+////////////////// Browser Object Model(BOM)........................
+
+// window object
+// location object..............
+
+
+
+////////////// to change the link  use location.assign("Link");
+
+
+////////////////////////// Popup Boxes.................
+
+// alert
+// confirm
+
+//  prompt..........
+
+
+
+
+//////////////////////// Timing Events..................
+
+// setTimeOut()
+const saveButton = document.querySelector('.save-btn');
+const message = document.querySelector('.message');
+saveButton.addEventListener("click", saveUser);
+
+function saveUser(){
+    message.textContent = "user registration successful";
+
+    setTimeout(()=>{
+        message.textContent = "";
+
+    }, 2000);
+}
+
+
+
+// setInterval()
+const saveButton = document.querySelector('.save-btn');
+const message = document.querySelector('.message');
+saveButton.addEventListener("click", intervals);
+
+function intervals(){
+    let count = 0;
+    message.textContent = count;
+    setInterval(()=>{
+        count++;
+        message.textContent = count;
+    },1000);
+}
+
+
+
+/////////////////// creat a clock...........
+const saveButton = document.querySelector('.save-btn');
+const message = document.querySelector('.message');
+saveButton.addEventListener("click", clockStarts);
+
+
+function clockStarts(){
+    let date = new Date();
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let seconds = date.getSeconds();
+    minutes = formatTime(minutes);
+    seconds = formatTime(seconds);
+
+
+    let time = hours + ":" + minutes + ":" + seconds;
+    
+    message.textContent = time;
+    setInterval(clockStarts, 1000);
+
+}
+
+function formatTime(value){
+    if(value<10){
+        value = "0"+value
+
+    }
+    return value;
+
+}
+
+
+
+
+/////////////// error handling....................
+
+
+//// try, catch, finally............
+try{
+    ////code here
+
+}catch(err){
+    //// handle error
+
+}finally{
+    //// always working code
+
+}
+
+
+
+////  throw statement( create custom error).................
+
+document.querySelector('#checkButton').addEventListener("click", function(){
+    // alert("Hello");
+
+
+    var num = document.querySelector('#inputtext').value;
+    
+    try{
+        if(num < 5){
+            throw "Input is too low";
+        } else if (num > 10){
+            throw "input is too large";
+        }else{
+            alert(num);
+        }
+
+
+    }catch(err){
+        alert(err);
+    }
+
+});
+
+
+
+//////////// canvas...............
+
+var c = document.querySelector('#myCanvas');
+
+var ctx = c.getContext("2d");
+ctx.lineWidth=3;
+ctx.strokeStyle ="black";
+ctx.strokeRect(10, 10,380, 280)
+ctx.fillStyle ="green";
+
+ctx.fillRect(12,12, 376, 276);
+
+var centerX = c.width / 2;
+var centerY = c.height / 2;
+
+ctx.beginPath();
+ctx.arc(centerX , centerY, 80, 0, 2*Math.PI, false);
+ctx.fillStyle="red";
+ctx.fill();
+ctx.stroke();
+
+
+///////////////// variable and function in ES6..........
 
 
 
